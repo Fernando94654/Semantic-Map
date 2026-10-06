@@ -72,6 +72,7 @@ class SemanticGraph:
         self.objects: dict[str, ObjectInstance] = {}
         self.map_name: str = ""
         self.t_capture: float = 0.0
+        self._text_vectors: dict[str, Any] = {}
 
     # --- construction ---
 
@@ -92,7 +93,6 @@ class SemanticGraph:
     def load_layout(self, areas: dict[str, Any], meta: Optional[dict[str, Any]] = None) -> None:
         """Load the fixed layer from a raw areas.json dict."""
         self.rooms = rooms_from_layout(areas, self.config, meta)
-        self._embed_missing()
 
     # --- online input ---
 
@@ -178,7 +178,7 @@ class SemanticGraph:
 
     def find(self, query: str, k: Optional[int] = None) -> list[ObjectMatch]:
         """Retrieve objects by free text; without an encoder, by exact label or category."""
-        ranked = self._rank(query, list(self.objects.values()))
+        ranked = self._rank(query, list(self.objects.values()), _appearance)
         return [ObjectMatch(o, score) for o, score in ranked[: k or self.config.top_k]]
 
     # --- commands: parse is the slow LLM call, select is pure ---
@@ -195,11 +195,16 @@ class SemanticGraph:
         return parsed
 
     def select(self, parsed: ParsedQuery) -> list[ObjectMatch]:
-        """Resolve a parsed command to objects: room and relation by geometry, target by similarity."""
+        """Resolve a parsed command to objects.
+
+        Room and relation are settled by geometry. The anchor is matched by
+        name, text against text; the target by appearance, text against the
+        object embedding.
+        """
         objects = [o for o in self.objects.values() if parsed.room in ("", o.area)]
         if parsed.anchor:
             surfaces = [s for s in self._surfaces() if parsed.room in ("", s.area)]
-            anchors = self._rank(parsed.anchor, surfaces + objects)
+            anchors = self._rank(parsed.anchor, surfaces + objects, self._name_vector)
             if not anchors:
                 return []
             anchor = anchors[0][0]
@@ -208,7 +213,7 @@ class SemanticGraph:
             ]
         if not parsed.target:
             return [ObjectMatch(o, 1.0) for o in objects]
-        ranked = self._rank(parsed.target, objects)
+        ranked = self._rank(parsed.target, objects, _appearance)
         return [ObjectMatch(o, score) for o, score in ranked[: self.config.top_k]]
 
     def resolve(self, text: str) -> list[ObjectMatch]:
@@ -223,25 +228,32 @@ class SemanticGraph:
         return [s for room in self.rooms.values() for s in room.surfaces.values()]
 
     def _embed(self, name: str):
+        """CLIP text vector of a name or query, computed once."""
         if self.encoder is None:
             return None
-        return self.encoder.encode_text(self.config.query_template.format(name.replace("_", " ")))
+        if name not in self._text_vectors:
+            caption = self.config.query_template.format(name.replace("_", " "))
+            self._text_vectors[name] = self.encoder.encode_text(caption)
+        return self._text_vectors[name]
 
     def _embed_missing(self) -> None:
-        """Give every surface and object without an embedding one from its name."""
-        for node in self._surfaces() + list(self.objects.values()):
-            if node.embedding is None:
-                node.embedding = self._embed(_name(node))
+        """Objects that arrive without an embedding get one from their label."""
+        for obj in self.objects.values():
+            if obj.embedding is None:
+                obj.embedding = self._embed(obj.label)
 
-    def _rank(self, text: str, nodes: list) -> list[tuple[Any, float]]:
-        """Score surfaces or objects against a text, best first."""
+    def _name_vector(self, node: Any):
+        return self._embed(_name(node))
+
+    def _rank(self, text: str, nodes: list, vector: Any) -> list[tuple[Any, float]]:
+        """Score nodes against a text, best first; `vector` picks what each node is compared by."""
         if self.encoder is None:
             wanted = text.lower().replace(" ", "_")
             return [
                 (n, 1.0) for n in nodes if wanted in (_name(n), getattr(n, "category", None))
             ]
         query = self._embed(text)
-        scored = [(n, float(n.embedding @ query)) for n in nodes if n.embedding is not None]
+        scored = [(n, float(vector(n) @ query)) for n in nodes if vector(n) is not None]
         scored = [pair for pair in scored if pair[1] >= self.config.sim_min]
         return sorted(scored, key=lambda pair: -pair[1])
 
@@ -264,6 +276,10 @@ class SemanticGraph:
         if obj.embedding is None or obs.embedding is None:
             return obj.label == obs.label
         return float(obj.embedding @ obs.embedding) >= self.config.merge_sim_min
+
+
+def _appearance(obj: ObjectInstance):
+    return obj.embedding
 
 
 def _name(node: Any) -> str:

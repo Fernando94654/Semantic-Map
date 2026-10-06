@@ -10,16 +10,16 @@
   <text x="34" y="40" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.5">LOAD</text>
   <g font-size="14" fill="#1f2933" text-anchor="middle">
     <rect x="34" y="56" width="196" height="64" rx="8" fill="#fff" stroke="#c5ccd6"/>
-    <text x="132" y="84" font-weight="600">snapshot .json</text>
+    <text x="132" y="84" font-weight="600">snapshot + embeddings</text>
     <rect x="266" y="56" width="196" height="64" rx="8" fill="#fff" stroke="#c5ccd6"/>
     <text x="364" y="84" font-weight="600">read and parse</text>
     <rect x="498" y="56" width="196" height="64" rx="8" fill="#fff" stroke="#0d7d75" stroke-width="2"/>
-    <text x="596" y="84" font-weight="600">embed names with CLIP</text>
+    <text x="596" y="84" font-weight="600">embed what is missing</text>
     <rect x="730" y="56" width="196" height="64" rx="8" fill="#1f2933"/>
     <text x="828" y="84" font-weight="600" fill="#fff">SemanticGraph</text>
   </g>
   <g font-size="11" fill="#64748b" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">
-    <text x="132" y="104">data/</text>
+    <text x="132" y="104">data/ · scripts/embed_images</text>
     <text x="364" y="104">adapters/files · core/serialize</text>
     <text x="596" y="104">adapters/clip_encoder</text>
     <text x="828" y="104" fill="#cbd5e1">rooms · surfaces · objects</text>
@@ -56,11 +56,11 @@
     <text x="480" y="266">objects in</text>
     <text x="480" y="281">that room</text>
     <text x="480" y="298" font-style="italic">exact name</text>
-    <text x="600" y="266">find it, keep what</text>
-    <text x="600" y="281">is on or near it</text>
+    <text x="600" y="266">match by name,</text>
+    <text x="600" y="281">keep what is near</text>
     <text x="600" y="298" font-style="italic">cosine + geometry</text>
-    <text x="720" y="266">rank what</text>
-    <text x="720" y="281">is left</text>
+    <text x="720" y="266">rank by</text>
+    <text x="720" y="281">appearance</text>
     <text x="720" y="298" font-style="italic">cosine</text>
   </g>
   <g font-size="11" fill="#64748b" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">

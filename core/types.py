@@ -73,7 +73,6 @@ class Surface:
     front_yaw_rad: Optional[float] = None
     arm_pose: Optional[str] = None
     last_scanned: Optional[float] = None
-    embedding: Optional[np.ndarray] = None
 
 
 @dataclass

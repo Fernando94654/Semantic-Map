@@ -65,7 +65,8 @@ class SemanticMapConfig:
     # Retrieval. CLIP matches captions better than bare words.
     query_template: str = "a photo of a {}"
     top_k: int = 5
-    sim_min: float = 0.22
+    # Text against image: real matches score 0.25-0.33, unrelated queries stay under 0.24.
+    sim_min: float = 0.24
 
     # How far an object may sit from a surface and still belong to it.
     max_sublocation_distance_m: float = 1.5

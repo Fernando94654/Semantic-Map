@@ -41,7 +41,9 @@ same ports answered by ROS services, for the robot; `core/` and `ports.py` are
 reused unchanged.
 
 **`data/`** — `mock_snapshot.json`: a real competition layout with synthetic
-objects and timestamps. Embeddings are `null`, filled by the encoder on load.
+objects and timestamps. `images/` holds one photo per object, from Wikimedia
+Commons (`images/SOURCES.md`); `scripts/embed_images.py` turns them into the
+object embeddings. Without them, objects fall back to the text of their label.
 
 ## Flow
 
@@ -57,6 +59,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 docker run -d --runtime nvidia --network host -v ollama:/root/.ollama --name semantic-map-ollama ollama/ollama
 docker exec semantic-map-ollama ollama pull qwen3:8b
 
+.venv/bin/python scripts/embed_images.py   # data/images -> data/embeddings.npz (not committed)
 .venv/bin/python -m pytest
 .venv/bin/python main.py "what is next to the bed" "tráeme la bebida de la cocina"
 ```

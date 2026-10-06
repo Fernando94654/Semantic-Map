@@ -5,7 +5,7 @@
   "embedding_dim": 512,
   "meta": {
     "source": "synthetic",
-    "note": "Mock snapshot for offline work. The layout is the real robocup2026_1 map; objects, timestamps and scan marks are made up. Embeddings are null: fill them with CLIP at load time."
+    "note": "Mock snapshot for offline work. The layout is the real robocup2026_1 map; objects, timestamps and scan marks are made up. Embeddings are null: scripts/embed_images.py computes them from data/images."
   },
   "layout": {
     "start_location": {
@@ -358,161 +358,384 @@
     "living_room/tv_stand": 1789999942.0,
     "bedroom/bed": 1789999991.0,
     "laundry/washing_machine": 1789999690.0,
-    "laundry/table": 1789999678.0
+    "laundry/table": 1789999678.0,
+    "kitchen/cooking_table": 1789999850.0,
+    "laundry/shelf": 1789999670.0
   },
   "objects": [
     {
       "id": "obj_001",
       "label": "coca_cola",
       "category": "drink",
-      "area": "kitchen",
-      "sublocation": "refrigerator",
-      "confidence": 0.93,
-      "first_seen": 1789999934.0,
-      "last_seen": 1789999962.0,
-      "embedding": null,
       "position": [
         1.5847,
         -14.3805,
         0.9
       ],
-      "observation_count": 7
+      "area": "kitchen",
+      "sublocation": "refrigerator",
+      "confidence": 0.93,
+      "first_seen": 1789999950.0,
+      "last_seen": 1789999962.0,
+      "observation_count": 3,
+      "embedding": null
     },
     {
       "id": "obj_002",
-      "label": "cornflakes",
+      "label": "cereal",
       "category": "food",
-      "area": "kitchen",
-      "sublocation": "dinner_table",
-      "confidence": 0.88,
-      "first_seen": 1789999854.0,
-      "last_seen": 1789999874.0,
-      "embedding": null,
       "position": [
         -0.6204,
         -12.6945,
         0.75
       ],
-      "observation_count": 5
+      "area": "kitchen",
+      "sublocation": "dinner_table",
+      "confidence": 0.88,
+      "first_seen": 1789999858.0,
+      "last_seen": 1789999874.0,
+      "observation_count": 4,
+      "embedding": null
     },
     {
       "id": "obj_003",
       "label": "apple",
       "category": "fruit",
-      "area": "kitchen",
-      "sublocation": "counter",
-      "confidence": 0.81,
-      "first_seen": 1789999853.0,
-      "last_seen": 1789999869.0,
-      "embedding": null,
       "position": [
         -2.1157,
         -12.3253,
         0.75
       ],
-      "observation_count": 4
+      "area": "kitchen",
+      "sublocation": "counter",
+      "confidence": 0.81,
+      "first_seen": 1789999849.0,
+      "last_seen": 1789999869.0,
+      "observation_count": 5,
+      "embedding": null
     },
     {
       "id": "obj_004",
       "label": "sponge",
       "category": "cleaning_supply",
-      "area": "kitchen",
-      "sublocation": "cabinet",
-      "confidence": 0.76,
-      "first_seen": 1789999848.0,
-      "last_seen": 1789999860.0,
-      "embedding": null,
       "position": [
         1.1055,
         -12.5052,
         1.1
       ],
-      "observation_count": 3
+      "area": "kitchen",
+      "sublocation": "cabinet",
+      "confidence": 0.76,
+      "first_seen": 1789999836.0,
+      "last_seen": 1789999860.0,
+      "observation_count": 6,
+      "embedding": null
     },
     {
       "id": "obj_005",
       "label": "cup",
       "category": "dish",
-      "area": "living_room",
-      "sublocation": "sofa",
-      "confidence": 0.89,
-      "first_seen": 1789999935.0,
-      "last_seen": 1789999959.0,
-      "embedding": null,
       "position": [
         -1.128,
         -8.945,
         0.45
       ],
-      "observation_count": 6
+      "area": "living_room",
+      "sublocation": "sofa",
+      "confidence": 0.89,
+      "first_seen": 1789999931.0,
+      "last_seen": 1789999959.0,
+      "observation_count": 7,
+      "embedding": null
     },
     {
       "id": "obj_006",
       "label": "pringles",
       "category": "snack",
-      "area": "living_room",
-      "sublocation": "coffee_table",
-      "confidence": 0.84,
-      "first_seen": 1789999936.0,
-      "last_seen": 1789999956.0,
-      "embedding": null,
       "position": [
         -2.2159,
         -10.5303,
         0.45
       ],
-      "observation_count": 5
+      "area": "living_room",
+      "sublocation": "coffee_table",
+      "confidence": 0.84,
+      "first_seen": 1789999948.0,
+      "last_seen": 1789999956.0,
+      "observation_count": 2,
+      "embedding": null
     },
     {
       "id": "obj_007",
       "label": "banana",
       "category": "fruit",
-      "area": "bedroom",
-      "sublocation": "bed",
-      "confidence": 0.72,
-      "first_seen": 1789999983.0,
-      "last_seen": 1789999991.0,
-      "embedding": null,
       "position": [
         3.9887,
         -11.9963,
         0.45
       ],
-      "observation_count": 2
+      "area": "bedroom",
+      "sublocation": "bed",
+      "confidence": 0.72,
+      "first_seen": 1789999979.0,
+      "last_seen": 1789999991.0,
+      "observation_count": 3,
+      "embedding": null
     },
     {
       "id": "obj_008",
       "label": "tshirt",
       "category": "laundry",
-      "area": "laundry",
-      "sublocation": "washing_machine",
-      "confidence": 0.69,
-      "first_seen": 1789999678.0,
-      "last_seen": 1789999690.0,
-      "embedding": null,
       "position": [
         3.4894,
         -9.1837,
         0.9
       ],
-      "observation_count": 3
+      "area": "laundry",
+      "sublocation": "washing_machine",
+      "confidence": 0.69,
+      "first_seen": 1789999674.0,
+      "last_seen": 1789999690.0,
+      "observation_count": 4,
+      "embedding": null
     },
     {
       "id": "obj_009",
       "label": "milk",
       "category": null,
-      "area": "kitchen",
-      "sublocation": "refrigerator",
-      "confidence": 0.58,
-      "first_seen": 1789999954.0,
-      "last_seen": 1789999962.0,
-      "embedding": null,
       "position": [
         1.3447,
         -14.2205,
         0.9
       ],
-      "observation_count": 2
+      "area": "kitchen",
+      "sublocation": "refrigerator",
+      "confidence": 0.58,
+      "first_seen": 1789999942.0,
+      "last_seen": 1789999962.0,
+      "observation_count": 5,
+      "embedding": null
+    },
+    {
+      "id": "obj_010",
+      "label": "pepsi",
+      "category": "drink",
+      "position": [
+        1.5047,
+        -14.1705,
+        0.9
+      ],
+      "area": "kitchen",
+      "sublocation": "refrigerator",
+      "confidence": 0.9,
+      "first_seen": 1789999938.0,
+      "last_seen": 1789999962.0,
+      "observation_count": 6,
+      "embedding": null
+    },
+    {
+      "id": "obj_011",
+      "label": "orange_juice",
+      "category": "drink",
+      "position": [
+        -2.3457,
+        -12.6053,
+        0.75
+      ],
+      "area": "kitchen",
+      "sublocation": "counter",
+      "confidence": 0.77,
+      "first_seen": 1789999841.0,
+      "last_seen": 1789999869.0,
+      "observation_count": 7,
+      "embedding": null
+    },
+    {
+      "id": "obj_012",
+      "label": "water_bottle",
+      "category": "drink",
+      "position": [
+        -1.9559,
+        -10.7003,
+        0.45
+      ],
+      "area": "living_room",
+      "sublocation": "coffee_table",
+      "confidence": 0.86,
+      "first_seen": 1789999948.0,
+      "last_seen": 1789999956.0,
+      "observation_count": 2,
+      "embedding": null
+    },
+    {
+      "id": "obj_013",
+      "label": "mug",
+      "category": "dish",
+      "position": [
+        -0.2804,
+        -12.9945,
+        0.75
+      ],
+      "area": "kitchen",
+      "sublocation": "dinner_table",
+      "confidence": 0.83,
+      "first_seen": 1789999862.0,
+      "last_seen": 1789999874.0,
+      "observation_count": 3,
+      "embedding": null
+    },
+    {
+      "id": "obj_014",
+      "label": "bowl",
+      "category": "dish",
+      "position": [
+        -1.6111,
+        -15.2482,
+        0.9
+      ],
+      "area": "kitchen",
+      "sublocation": "dishwasher",
+      "confidence": 0.8,
+      "first_seen": 1789999819.0,
+      "last_seen": 1789999835.0,
+      "observation_count": 4,
+      "embedding": null
+    },
+    {
+      "id": "obj_015",
+      "label": "plate",
+      "category": "dish",
+      "position": [
+        -2.1161,
+        -12.8342,
+        0.9
+      ],
+      "area": "kitchen",
+      "sublocation": "sink",
+      "confidence": 0.85,
+      "first_seen": 1789999828.0,
+      "last_seen": 1789999848.0,
+      "observation_count": 5,
+      "embedding": null
+    },
+    {
+      "id": "obj_016",
+      "label": "fork",
+      "category": "cutlery",
+      "position": [
+        -0.2004,
+        -12.7345,
+        0.75
+      ],
+      "area": "kitchen",
+      "sublocation": "dinner_table",
+      "confidence": 0.66,
+      "first_seen": 1789999850.0,
+      "last_seen": 1789999874.0,
+      "observation_count": 6,
+      "embedding": null
+    },
+    {
+      "id": "obj_017",
+      "label": "orange",
+      "category": "fruit",
+      "position": [
+        -1.9457,
+        -12.5653,
+        0.75
+      ],
+      "area": "kitchen",
+      "sublocation": "counter",
+      "confidence": 0.82,
+      "first_seen": 1789999841.0,
+      "last_seen": 1789999869.0,
+      "observation_count": 7,
+      "embedding": null
+    },
+    {
+      "id": "obj_018",
+      "label": "lemon",
+      "category": "fruit",
+      "position": [
+        -1.8464,
+        -13.1932,
+        0.75
+      ],
+      "area": "kitchen",
+      "sublocation": "cooking_table",
+      "confidence": 0.79,
+      "first_seen": 1789999842.0,
+      "last_seen": 1789999850.0,
+      "observation_count": 2,
+      "embedding": null
+    },
+    {
+      "id": "obj_019",
+      "label": "chips",
+      "category": "snack",
+      "position": [
+        0.0382,
+        -7.9471,
+        1.1
+      ],
+      "area": "living_room",
+      "sublocation": "tv_stand",
+      "confidence": 0.81,
+      "first_seen": 1789999930.0,
+      "last_seen": 1789999942.0,
+      "observation_count": 3,
+      "embedding": null
+    },
+    {
+      "id": "obj_020",
+      "label": "dish_soap",
+      "category": "cleaning_supply",
+      "position": [
+        2.3426,
+        -7.2992,
+        1.1
+      ],
+      "area": "laundry",
+      "sublocation": "shelf",
+      "confidence": 0.74,
+      "first_seen": 1789999654.0,
+      "last_seen": 1789999670.0,
+      "observation_count": 4,
+      "embedding": null
+    },
+    {
+      "id": "obj_021",
+      "label": "towel",
+      "category": "laundry",
+      "position": [
+        3.3694,
+        -7.8174,
+        0.75
+      ],
+      "area": "laundry",
+      "sublocation": "table",
+      "confidence": 0.78,
+      "first_seen": 1789999658.0,
+      "last_seen": 1789999678.0,
+      "observation_count": 5,
+      "embedding": null
+    },
+    {
+      "id": "obj_022",
+      "label": "book",
+      "category": null,
+      "position": [
+        3.5387,
+        -12.2463,
+        0.45
+      ],
+      "area": "bedroom",
+      "sublocation": "bed",
+      "confidence": 0.71,
+      "first_seen": 1789999967.0,
+      "last_seen": 1789999991.0,
+      "observation_count": 6,
+      "embedding": null
     }
   ]
 }
