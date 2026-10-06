@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 372" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 1 L10 5 L0 9 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="960" height="372" rx="10" fill="#f7f8fa"/>
+
+  <!-- LOAD -->
+  <text x="34" y="40" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.5">LOAD</text>
+  <g font-size="14" fill="#1f2933" text-anchor="middle">
+    <rect x="34" y="56" width="196" height="64" rx="8" fill="#fff" stroke="#c5ccd6"/>
+    <text x="132" y="84" font-weight="600">snapshot + embeddings</text>
+    <rect x="266" y="56" width="196" height="64" rx="8" fill="#fff" stroke="#c5ccd6"/>
+    <text x="364" y="84" font-weight="600">read and parse</text>
+    <rect x="498" y="56" width="196" height="64" rx="8" fill="#fff" stroke="#0d7d75" stroke-width="2"/>
+    <text x="596" y="84" font-weight="600">embed what is missing</text>
+    <rect x="730" y="56" width="196" height="64" rx="8" fill="#1f2933"/>
+    <text x="828" y="84" font-weight="600" fill="#fff">SemanticGraph</text>
+  </g>
+  <g font-size="11" fill="#64748b" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">
+    <text x="132" y="104">data/ · scripts/embed_images</text>
+    <text x="364" y="104">adapters/files · core/serialize</text>
+    <text x="596" y="104">adapters/clip_encoder</text>
+    <text x="828" y="104" fill="#cbd5e1">rooms · surfaces · objects</text>
+  </g>
+  <g stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="230" y1="88" x2="264" y2="88"/>
+    <line x1="462" y1="88" x2="496" y2="88"/>
+    <line x1="694" y1="88" x2="728" y2="88"/>
+  </g>
+
+  <!-- QUERY -->
+  <text x="34" y="172" font-size="12" font-weight="700" fill="#64748b" letter-spacing="1.5">QUERY</text>
+  <rect x="414" y="186" width="372" height="136" rx="10" fill="#eef1f5" stroke="#c5ccd6" stroke-dasharray="5 4"/>
+  <text x="426" y="207" font-size="12" font-weight="600" fill="#1f2933">select</text>
+  <text x="774" y="207" font-size="11" fill="#64748b" text-anchor="end" font-family="ui-monospace, Menlo, Consolas, monospace">no LLM · core/graph</text>
+
+  <g font-size="14" fill="#1f2933" text-anchor="middle">
+    <rect x="34" y="222" width="170" height="64" rx="8" fill="#fff" stroke="#c5ccd6"/>
+    <text x="119" y="250" font-weight="600">command</text>
+    <rect x="234" y="222" width="150" height="64" rx="8" fill="#fff" stroke="#0d7d75" stroke-width="2"/>
+    <text x="309" y="250" font-weight="600">parse with LLM</text>
+
+    <rect x="426" y="218" width="108" height="92" rx="8" fill="#fff" stroke="#c5ccd6"/>
+    <text x="480" y="244" font-weight="600">1 · room</text>
+    <rect x="546" y="218" width="108" height="92" rx="8" fill="#fff" stroke="#c5ccd6"/>
+    <text x="600" y="244" font-weight="600">2 · anchor</text>
+    <rect x="666" y="218" width="108" height="92" rx="8" fill="#fff" stroke="#c5ccd6"/>
+    <text x="720" y="244" font-weight="600">3 · target</text>
+
+    <rect x="816" y="222" width="110" height="64" rx="8" fill="#1f2933"/>
+    <text x="871" y="250" font-weight="600" fill="#fff">matches</text>
+  </g>
+  <g font-size="11" fill="#64748b" text-anchor="middle">
+    <text x="480" y="266">objects in</text>
+    <text x="480" y="281">that room</text>
+    <text x="480" y="298" font-style="italic">exact name</text>
+    <text x="600" y="266">match by name,</text>
+    <text x="600" y="281">keep what is near</text>
+    <text x="600" y="298" font-style="italic">cosine + geometry</text>
+    <text x="720" y="266">rank by look</text>
+    <text x="720" y="281">and name</text>
+    <text x="720" y="298" font-style="italic">two cosines</text>
+  </g>
+  <g font-size="11" fill="#64748b" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">
+    <text x="119" y="270">main</text>
+    <text x="309" y="270">adapters/llm</text>
+    <text x="871" y="270" fill="#cbd5e1">ObjectMatch[]</text>
+  </g>
+  <g stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="204" y1="254" x2="232" y2="254"/>
+    <line x1="384" y1="254" x2="412" y2="254"/>
+    <line x1="534" y1="264" x2="544" y2="264"/>
+    <line x1="654" y1="264" x2="664" y2="264"/>
+    <line x1="786" y1="254" x2="814" y2="254"/>
+  </g>
+  <text x="399" y="304" font-size="11" fill="#64748b" text-anchor="end" font-family="ui-monospace, Menlo, Consolas, monospace">ParsedQuery(target, anchor, relation, room)</text>
+
+  <!-- legend -->
+  <rect x="34" y="342" width="14" height="14" rx="3" fill="#fff" stroke="#0d7d75" stroke-width="2"/>
+  <text x="56" y="354" font-size="12" fill="#64748b">model call</text>
+</svg>

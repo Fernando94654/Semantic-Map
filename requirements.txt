@@ -1,0 +1,5 @@
+numpy
+torch
+requests
+pytest
+clip @ git+https://github.com/openai/CLIP.git
