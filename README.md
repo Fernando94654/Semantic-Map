@@ -36,11 +36,32 @@ once from the map and never change. **Objects** are the only layer built online.
 
 **`ports.py`** — `ClipEncoder`, `LLM`, `Clock`. Declarations only.
 
-**`adapters/`** — local CLIP, Ollama, clocks. On the robot these are swapped for
-ROS equivalents one at a time; `core/` and `ports.py` are reused unchanged.
+**`adapters/`** — local CLIP, Ollama, clocks and file loading. `ros.py` holds the
+same ports answered by ROS services, for the robot; `core/` and `ports.py` are
+reused unchanged.
 
 **`data/`** — `mock_snapshot.json`: a real competition layout with synthetic
 objects and timestamps. Embeddings are `null`, filled by the encoder on load.
+
+## Flow
+
+![Load and query flow](docs/flow.svg)
+
+Steps 2 and 3 only run when the command has an anchor or a target. With no
+target, everything left is returned unranked.
+
+## Run locally
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+docker run -d --runtime nvidia --network host -v ollama:/root/.ollama --name semantic-map-ollama ollama/ollama
+docker exec semantic-map-ollama ollama pull qwen3:8b
+
+.venv/bin/python -m pytest
+.venv/bin/python main.py "what is next to the bed" "tráeme la bebida de la cocina"
+```
+
+Tests that need CLIP or Ollama skip themselves when either is missing.
 
 ## Why
 
@@ -60,13 +81,12 @@ boundary. Dicts work until the first argument over `sublocation` vs. `subarea`.
 work loads, what a test replays. One format means the two paths cannot drift, and
 runs stay reproducible.
 
-**Prompt and call are separate** — `to_prompt` and `apply_plan` are fast and
-pure; the LLM call between them is slow. Splitting them keeps a model off the
-critical path.
+**Parse and select are separate** — `parse` is the slow LLM call, `select` is
+fast and pure. Splitting them keeps a model off the critical path.
 
 **Degrade instead of failing** — no encoder falls back to label matching, no LLM
-falls back to the placement rules. On a competition clock a slow model must not
-stop the robot.
+treats the whole command as the target. On a competition clock a slow model must
+not stop the robot.
 
 **Not thread-safe, on purpose** — locks stay out of the core. On the robot a
 single mutually-exclusive callback group serializes access.

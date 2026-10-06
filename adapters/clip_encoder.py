@@ -2,24 +2,24 @@
 
 from __future__ import annotations
 
+import clip
 import numpy as np
+import torch
 
 
 class ClipEncoder:
-    """CLIP running on this machine, image and text in one space."""
+    """OpenAI CLIP text tower, the same weights home2's ImageEmbedder loads."""
 
-    def __init__(self, model_name: str = "ViT-B-32", device: str = "cpu") -> None:
-        pass
+    def __init__(self, model_name: str = "ViT-B/32", device: str | None = None) -> None:
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.model, _ = clip.load(model_name, device=self.device)
 
     @property
     def dim(self) -> int:
-        """Embedding size, 512 for ViT-B/32."""
-        pass
+        return self.model.text_projection.shape[1]
 
     def encode_text(self, text: str) -> np.ndarray:
-        """Encode a query string, L2-normalized."""
-        pass
-
-    def encode_image(self, crop: np.ndarray) -> np.ndarray:
-        """Encode an image crop, L2-normalized."""
-        pass
+        """Encode a string, L2-normalized."""
+        with torch.no_grad():
+            vector = self.model.encode_text(clip.tokenize([text]).to(self.device))[0].float()
+        return (vector / vector.norm()).cpu().numpy()

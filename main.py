@@ -1,35 +1,37 @@
-"""Entry point for offline work: wires the graph to the local adapters.
+"""Offline entry point: the mock snapshot with CLIP and Ollama running locally.
 
-On the robot the same SemanticGraph is built in a ROS node with ROS adapters.
+    python main.py "what is next to the bed" "tráeme la bebida de la cocina"
 """
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 from adapters.clip_encoder import ClipEncoder
-from adapters.clock import SystemClock
+from adapters.files import load_snapshot
 from adapters.llm import OllamaLLM
 from core.config import SemanticMapConfig
 from core.graph import SemanticGraph
 
+MOCK_SNAPSHOT = Path(__file__).parent / "data" / "mock_snapshot.json"
 
-class LocalSemanticMap:
-    """SemanticGraph with CLIP, Ollama and the wall clock running in-process."""
 
-    def __init__(self, config: SemanticMapConfig | None = None) -> None:
-        self.config = config or SemanticMapConfig()
-        self.encoder = ClipEncoder()
-        self.llm = OllamaLLM()
-        self.clock = SystemClock()
-        self.graph = SemanticGraph(
-            config=self.config,
-            encoder=self.encoder,
-            llm=self.llm,
-            clock=self.clock,
-        )
+def build_graph(path: Path = MOCK_SNAPSHOT) -> SemanticGraph:
+    config = SemanticMapConfig()
+    return SemanticGraph.from_snapshot(
+        load_snapshot(path, config), config=config, encoder=ClipEncoder(), llm=OllamaLLM()
+    )
 
 
 def main() -> None:
-    LocalSemanticMap()
+    graph = build_graph()
+    for query in sys.argv[1:]:
+        parsed = graph.parse(query)
+        print(f"{query}\n  {parsed}")
+        for match in graph.select(parsed):
+            obj = match.obj
+            print(f"  {match.score:.2f}  {obj.id}  {obj.label}  {obj.area}/{obj.sublocation}")
 
 
 if __name__ == "__main__":

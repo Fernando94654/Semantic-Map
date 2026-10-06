@@ -12,14 +12,12 @@ import numpy as np
 
 @runtime_checkable
 class ClipEncoder(Protocol):
-    """CLIP image and text in one space."""
+    """CLIP text tower. Crops are embedded by vision and arrive in observations."""
 
     @property
     def dim(self) -> int: ...
 
     def encode_text(self, text: str) -> np.ndarray: ...
-
-    def encode_image(self, crop: np.ndarray) -> np.ndarray: ...
 
 
 @runtime_checkable
