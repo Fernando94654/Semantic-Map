@@ -11,6 +11,8 @@ import math
 from dataclasses import astuple
 from typing import Any, Optional
 
+import numpy as np
+
 from core.config import SemanticMapConfig
 from core.serialize import rooms_from_layout
 from core.types import (
@@ -178,7 +180,7 @@ class SemanticGraph:
 
     def find(self, query: str, k: Optional[int] = None) -> list[ObjectMatch]:
         """Retrieve objects by free text; without an encoder, by exact label or category."""
-        ranked = self._rank(query, list(self.objects.values()), _appearance)
+        ranked = self._rank_objects(query, list(self.objects.values()))
         return [ObjectMatch(o, score) for o, score in ranked[: k or self.config.top_k]]
 
     # --- commands: parse is the slow LLM call, select is pure ---
@@ -198,13 +200,12 @@ class SemanticGraph:
         """Resolve a parsed command to objects.
 
         Room and relation are settled by geometry. The anchor is matched by
-        name, text against text; the target by appearance, text against the
-        object embedding.
+        name; the target by appearance and name together.
         """
         objects = [o for o in self.objects.values() if parsed.room in ("", o.area)]
         if parsed.anchor:
             surfaces = [s for s in self._surfaces() if parsed.room in ("", s.area)]
-            anchors = self._rank(parsed.anchor, surfaces + objects, self._name_vector)
+            anchors = self._rank(parsed.anchor, surfaces + objects)
             if not anchors:
                 return []
             anchor = anchors[0][0]
@@ -213,7 +214,7 @@ class SemanticGraph:
             ]
         if not parsed.target:
             return [ObjectMatch(o, 1.0) for o in objects]
-        ranked = self._rank(parsed.target, objects, _appearance)
+        ranked = self._rank_objects(parsed.target, objects)
         return [ObjectMatch(o, score) for o, score in ranked[: self.config.top_k]]
 
     def resolve(self, text: str) -> list[ObjectMatch]:
@@ -242,19 +243,39 @@ class SemanticGraph:
             if obj.embedding is None:
                 obj.embedding = self._embed(obj.label)
 
-    def _name_vector(self, node: Any):
-        return self._embed(_name(node))
-
-    def _rank(self, text: str, nodes: list, vector: Any) -> list[tuple[Any, float]]:
-        """Score nodes against a text, best first; `vector` picks what each node is compared by."""
+    def _rank(self, text: str, nodes: list) -> list[tuple[Any, float]]:
+        """Score surfaces or objects against a text by name, best first."""
         if self.encoder is None:
             wanted = text.lower().replace(" ", "_")
             return [
                 (n, 1.0) for n in nodes if wanted in (_name(n), getattr(n, "category", None))
             ]
         query = self._embed(text)
-        scored = [(n, float(vector(n) @ query)) for n in nodes if vector(n) is not None]
+        scored = [(n, float(self._embed(_name(n)) @ query)) for n in nodes]
         scored = [pair for pair in scored if pair[1] >= self.config.sim_min]
+        return sorted(scored, key=lambda pair: -pair[1])
+
+    def _rank_objects(self, text: str, objects: list) -> list[tuple[Any, float]]:
+        """Score objects by appearance and name together, best first.
+
+        Image and name similarities live on different scales, so each is
+        z-scored over every object in the graph before they are mixed. Only
+        the image similarity decides whether an object is a match at all.
+        """
+        if self.encoder is None:
+            return self._rank(text, objects)
+        query = self._embed(text)
+        everything = list(self.objects.values())
+        image = np.array([o.embedding @ query for o in everything])
+        name = np.array([self._embed(o.label) @ query for o in everything])
+        weight = self.config.name_weight
+        fused = (1 - weight) * _z(image) + weight * _z(name)
+        wanted = {o.id for o in objects}
+        scored = [
+            (o, float(score))
+            for o, similarity, score in zip(everything, image, fused)
+            if o.id in wanted and similarity >= self.config.sim_min
+        ]
         return sorted(scored, key=lambda pair: -pair[1])
 
     def _related(self, obj: ObjectInstance, anchor: Any, relation: str) -> bool:
@@ -278,8 +299,9 @@ class SemanticGraph:
         return float(obj.embedding @ obs.embedding) >= self.config.merge_sim_min
 
 
-def _appearance(obj: ObjectInstance):
-    return obj.embedding
+def _z(values: np.ndarray) -> np.ndarray:
+    """Standard scores; a flat signal contributes nothing."""
+    return (values - values.mean()) / (values.std() or 1.0)
 
 
 def _name(node: Any) -> str:

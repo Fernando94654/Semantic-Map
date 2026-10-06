@@ -52,6 +52,11 @@ object embeddings. Without them, objects fall back to the text of their label.
 Steps 2 and 3 only run when the command has an anchor or a target. With no
 target, everything left is returned unranked.
 
+The target score mixes two cosines: the query against the object's image
+embedding and against its name. `name_weight` sets the mix (0 is appearance
+only, 1 is name only), and only the image similarity decides whether an object
+matches at all.
+
 ## Run locally
 
 ```bash

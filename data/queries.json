@@ -1,0 +1,109 @@
+{
+  "red can": [
+    "coca_cola"
+  ],
+  "blue can": [
+    "pepsi"
+  ],
+  "soda can": [
+    "coca_cola",
+    "pepsi"
+  ],
+  "white cup": [
+    "cup"
+  ],
+  "black mug": [
+    "mug"
+  ],
+  "yellow fruit": [
+    "lemon",
+    "banana"
+  ],
+  "banana": [
+    "banana"
+  ],
+  "orange fruit": [
+    "orange"
+  ],
+  "a drink": [
+    "coca_cola",
+    "pepsi",
+    "milk",
+    "orange_juice",
+    "water_bottle"
+  ],
+  "something to eat": [
+    "cereal",
+    "apple",
+    "banana",
+    "orange",
+    "lemon",
+    "pringles",
+    "chips"
+  ],
+  "snack": [
+    "pringles",
+    "chips"
+  ],
+  "cleaning product": [
+    "dish_soap",
+    "sponge"
+  ],
+  "book": [
+    "book"
+  ],
+  "towel": [
+    "towel"
+  ],
+  "milk": [
+    "milk"
+  ],
+  "cereal box": [
+    "cereal"
+  ],
+  "bottle of water": [
+    "water_bottle"
+  ],
+  "juice": [
+    "orange_juice"
+  ],
+  "fork": [
+    "fork"
+  ],
+  "plate": [
+    "plate"
+  ],
+  "bowl": [
+    "bowl"
+  ],
+  "potato chips": [
+    "chips",
+    "pringles"
+  ],
+  "t-shirt": [
+    "tshirt"
+  ],
+  "soap": [
+    "dish_soap"
+  ],
+  "mug": [
+    "mug",
+    "cup"
+  ],
+  "something to wash dishes": [
+    "sponge",
+    "dish_soap"
+  ],
+  "red fruit": [
+    "apple"
+  ],
+  "coke": [
+    "coca_cola"
+  ],
+  "pepsi": [
+    "pepsi"
+  ],
+  "green shirt": [
+    "tshirt"
+  ]
+}

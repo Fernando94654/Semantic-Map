@@ -146,7 +146,7 @@ class PointLocation:
 
 @dataclass
 class ObjectMatch:
-    """One retrieval hit, score in [0, 1]."""
+    """One retrieval hit; a higher score is a better match."""
 
     obj: ObjectInstance
     score: float

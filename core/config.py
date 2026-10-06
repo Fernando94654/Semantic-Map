@@ -67,6 +67,8 @@ class SemanticMapConfig:
     top_k: int = 5
     # Text against image: real matches score 0.25-0.33, unrelated queries stay under 0.24.
     sim_min: float = 0.24
+    # Share of the object's name in its score: 0 is appearance only, 1 is name only.
+    name_weight: float = 0.5
 
     # How far an object may sit from a surface and still belong to it.
     max_sublocation_distance_m: float = 1.5

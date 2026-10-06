@@ -59,9 +59,9 @@
     <text x="600" y="266">match by name,</text>
     <text x="600" y="281">keep what is near</text>
     <text x="600" y="298" font-style="italic">cosine + geometry</text>
-    <text x="720" y="266">rank by</text>
-    <text x="720" y="281">appearance</text>
-    <text x="720" y="298" font-style="italic">cosine</text>
+    <text x="720" y="266">rank by look</text>
+    <text x="720" y="281">and name</text>
+    <text x="720" y="298" font-style="italic">two cosines</text>
   </g>
   <g font-size="11" fill="#64748b" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace">
     <text x="119" y="270">main</text>
