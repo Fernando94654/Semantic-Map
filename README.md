@@ -59,6 +59,9 @@ matches at all.
 
 ## Run locally
 
+Needs Linux, Docker with the NVIDIA runtime, about 8 GB of VRAM and 12 GB of
+disk. Without a GPU, drop `--runtime nvidia`; it works, slowly.
+
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 docker run -d --runtime nvidia --network host -v ollama:/root/.ollama --name semantic-map-ollama ollama/ollama
