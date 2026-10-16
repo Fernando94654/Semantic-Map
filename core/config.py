@@ -54,23 +54,27 @@ DEFAULT_CATEGORY_TO_FURNITURE: dict[str, list[str]] = {
 class SemanticMapConfig:
     # Observation gating.
     confidence_min: float = 0.40
-    max_depth_m: float = 2.0
 
     # Instance fusion: a detection joins an instance when both tests pass.
     merge_dist_m: float = 0.25
     merge_sim_min: float = 0.80
 
-    # Staleness and coverage.
+    # Staleness.
     stale_after_s: float = 120.0
-    scan_radius_m: float = 1.5
 
-    # Retrieval. 512 is CLIP ViT-B/32.
-    embedding_dim: int = 512
+    # Retrieval. CLIP matches captions better than bare words.
+    query_template: str = "a photo of a {}"
     top_k: int = 5
-    sim_min: float = 0.22
+    # Text against image: real matches score 0.25-0.33, unrelated queries stay under 0.24.
+    sim_min: float = 0.24
+    # Share of the object's name in its score: 0 is appearance only, 1 is name only.
+    name_weight: float = 0.5
 
     # How far an object may sit from a surface and still belong to it.
     max_sublocation_distance_m: float = 1.5
+
+    # How close counts as "next to" an anchor.
+    near_m: float = 1.0
 
     type_by_name: dict[str, str] = field(default_factory=lambda: dict(DEFAULT_TYPE_BY_NAME))
     height_by_type: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_HEIGHT_BY_TYPE))

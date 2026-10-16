@@ -56,22 +56,6 @@ class SurfaceType(str, Enum):
     FLOOR = "floor"
 
 
-class ObjectStatus(str, Enum):
-    """What the graph currently believes about an object instance."""
-
-    PRESENT = "present"
-    MOVED = "moved"
-    REMOVED = "removed"
-
-
-class DiscrepancyKind(str, Enum):
-    """Why the house does not match its expected state."""
-
-    MISPLACED = "misplaced"
-    MOVED = "moved"
-    REMOVED = "removed"
-
-
 # --------------------------------------------------------------------------
 # Fixed layer: read once from areas.json, never changes during a run
 # --------------------------------------------------------------------------
@@ -133,12 +117,21 @@ class ObjectInstance:
     first_seen: float = 0.0
     last_seen: float = 0.0
     observation_count: int = 1
-    status: ObjectStatus = ObjectStatus.PRESENT
 
 
 # --------------------------------------------------------------------------
 # Query results
 # --------------------------------------------------------------------------
+
+
+@dataclass
+class ParsedQuery:
+    """A command split into what is wanted and where to look for it."""
+
+    target: str = ""
+    anchor: str = ""
+    relation: str = ""
+    room: str = ""
 
 
 @dataclass
@@ -153,7 +146,7 @@ class PointLocation:
 
 @dataclass
 class ObjectMatch:
-    """One retrieval hit, score in [0, 1]."""
+    """One retrieval hit; a higher score is a better match."""
 
     obj: ObjectInstance
     score: float
@@ -163,7 +156,6 @@ class ObjectMatch:
 class Discrepancy:
     """An object that is not where the house expects it to be."""
 
-    kind: DiscrepancyKind
     object_id: str
     label: str
     found_area: str = ""
