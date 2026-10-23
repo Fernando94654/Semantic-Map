@@ -1,0 +1,44 @@
+MIDTERM 1 — Ruteo conformal CLIP → VLM sobre un grafo de escena semántico
+TC2038 — Resource-Efficient LLM Systems
+Entregable: report/Midterm1_A00000000.pdf (fuente: report/midterm1.tex)
+
+IDEA CENTRAL
+Un robot doméstico resuelve órdenes ("tráeme la lata roja de la cocina") sobre un
+grafo persistente cuartos → superficies → objetos. El LLM solo descompone la orden;
+la geometría resuelve cuarto y ancla; CLIP ordena por imagen + nombre (z-score).
+Un conjunto conformal calibrado (APS) mide la incertidumbre de CLIP: si el conjunto
+tiene ≤ s candidatos responde CLIP, si no, un VLM elige entre los primeros 9 recortes
+mostrados en un mosaico numerado. Si el VLM no elige, el robot pregunta.
+
+MODELOS Y DATOS
+- Parser qwen3:8b, VLM qwen2.5vl:7b (Ollama, un modelo a la vez), CLIP ViT-B/32.
+- 60 objetos con foto de Wikimedia sobre el layout real robocup2026_1.
+- 232 órdenes (116 pares inglés/español), 5 tipos; 118 calibración, 114 prueba.
+- 5 repeticiones, temperature 0, seed 0.
+
+RESULTADOS (prueba)
+                  acierto   tokens/orden   VLM/orden   25% etiquetas mal
+A grafo completo   70.2%       925           0             59.6%
+B CLIP             78.1%       263           0             70.2%
+C VLM siempre      77.0%      1395           0.97            -
+D ruteo            81.4%      1201           0.84          77.2%
+
+- Cobertura conformal ≥ objetivo en todo α (95.6% a α=0.1; tope por el filtro).
+- α=0.2 con APS: conjunto de 1.7, acierto 80.7% con 273 tokens (costo de CLIP).
+- Barrido de s: hasta 85.8% con 0.61 llamadas al VLM; s ajustado en calibración = 6.
+- El VLM ayuda en atributo (91.7→98.0%) y negación (62.5→87.5%) y empeora cuarto y
+  espacial (→50%), donde la ubicación ya la resolvió la geometría.
+- Tokens de A crecen ~15.4 por objeto (913 con 60, 7708 con 500); D es constante.
+- next_to con 5000 objetos: fuerza bruta 895 ms, KD-tree 5.5 ms.
+- Determinismo: parse 100% igual entre repeticiones; select determinista.
+- Grounding offline (HF, 4-bit): la atención apunta al recorte correcto en 96.7% de
+  los aciertos y solo en 14.3% de los errores.
+
+SIGUIENTES PASOS (Q5)
+1. Calibración por tipo de orden (Mondrian) y no escalar cuarto/espacial.
+2. Desacuerdo atención-respuesta como señal para preguntar.
+3. Poda de tokens visuales por masa de atención (FastV / AVQ).
+
+REPRODUCIR
+python -m eval.run; python -m eval.report; python -m eval.grounding
+cd report && latexmk -pdf -jobname=Midterm1_A00000000 midterm1.tex

@@ -5,7 +5,7 @@ The core depends only on these protocols, never on ROS, torch or the filesystem.
 
 from __future__ import annotations
 
-from typing import Any, Protocol, runtime_checkable
+from typing import Any, Protocol, Sequence, runtime_checkable
 
 import numpy as np
 
@@ -25,6 +25,15 @@ class LLM(Protocol):
     """Structured completion. BAML over Ollama on the robot."""
 
     def complete_json(self, prompt: str, schema: dict[str, Any]) -> dict[str, Any]: ...
+
+
+@runtime_checkable
+class VLM(Protocol):
+    """Structured completion over object crops, shown as one grid numbered from 1."""
+
+    def complete_json(
+        self, prompt: str, schema: dict[str, Any], images: Sequence[str] = ()
+    ) -> dict[str, Any]: ...
 
 
 @runtime_checkable

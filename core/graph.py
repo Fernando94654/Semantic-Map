@@ -13,9 +13,11 @@ from typing import Any, Optional
 
 import numpy as np
 
+from core import conformal
 from core.config import SemanticMapConfig
 from core.serialize import rooms_from_layout
 from core.types import (
+    Answer,
     Discrepancy,
     Observation,
     ObjectInstance,
@@ -28,7 +30,7 @@ from core.types import (
     Surface,
     SurfaceType,
 )
-from ports import LLM, ClipEncoder, Clock
+from ports import LLM, VLM, ClipEncoder, Clock
 
 PARSE_PROMPT = """Split a household robot command into the object it asks for and where to look.
 Every value must be in English: translate the command first if it is in another language.
@@ -54,6 +56,10 @@ PARSE_SCHEMA = {
     "required": ["target", "anchor", "relation", "room"],
 }
 
+VERIFY_PROMPT = """The image is a grid of {n} photos, each with its number in a yellow box at its top-left corner.
+A person tells a robot: "{text}".
+Answer the number of the photo that best matches the object the person wants, or "" if none could match."""
+
 
 class SemanticGraph:
     """A three-layer map of the house: rooms, furniture, and the objects on them."""
@@ -64,17 +70,21 @@ class SemanticGraph:
         encoder: Optional[ClipEncoder] = None,
         llm: Optional[LLM] = None,
         clock: Optional[Clock] = None,
+        vlm: Optional[VLM] = None,
     ) -> None:
         self.config = config or SemanticMapConfig()
         self.encoder = encoder
         self.llm = llm
         self.clock = clock
+        self.vlm = vlm
 
         self.rooms: dict[str, Room] = {}
         self.objects: dict[str, ObjectInstance] = {}
         self.map_name: str = ""
         self.t_capture: float = 0.0
         self._text_vectors: dict[str, Any] = {}
+        # Same command, same parse: clear it to measure LLM variability.
+        self.parse_cache: dict[str, ParsedQuery] = {}
 
     # --- construction ---
 
@@ -189,18 +199,24 @@ class SemanticGraph:
         """Split a command into target, anchor, relation and room."""
         if self.llm is None:
             return ParsedQuery(target=text)
+        if text in self.parse_cache:
+            return self.parse_cache[text]
         rooms = [r.name for r in self.rooms.values() if r.polygon]
         answer = self.llm.complete_json(PARSE_PROMPT.format(rooms=rooms, text=text), PARSE_SCHEMA)
         parsed = ParsedQuery(**{k: answer.get(k, "") for k in PARSE_SCHEMA["properties"]})
         if parsed.room not in rooms:
             parsed.room = ""
+        self.parse_cache[text] = parsed
         return parsed
 
-    def select(self, parsed: ParsedQuery) -> list[ObjectMatch]:
+    def select(
+        self, parsed: ParsedQuery, k: Optional[int] = None, gated: bool = True
+    ) -> list[ObjectMatch]:
         """Resolve a parsed command to objects.
 
         Room and relation are settled by geometry. The anchor is matched by
-        name; the target by appearance and name together.
+        name; the target by appearance and name together. Ungated, no target
+        match is dropped for a low image similarity.
         """
         objects = [o for o in self.objects.values() if parsed.room in ("", o.area)]
         if parsed.anchor:
@@ -214,11 +230,61 @@ class SemanticGraph:
             ]
         if not parsed.target:
             return [ObjectMatch(o, 1.0) for o in objects]
-        ranked = self._rank_objects(parsed.target, objects)
-        return [ObjectMatch(o, score) for o, score in ranked[: self.config.top_k]]
+        ranked = self._rank_objects(parsed.target, objects, gated)
+        return [ObjectMatch(o, score) for o, score in ranked[: k or self.config.top_k]]
 
     def resolve(self, text: str) -> list[ObjectMatch]:
         return self.select(self.parse(text))
+
+    # --- cascade: CLIP narrows to a calibrated set, the VLM only breaks ties ---
+
+    def answer(self, text: str) -> Answer:
+        """Resolve a command to one object, candidates to ask about, or nothing."""
+        parsed = self.parse(text)
+        if not parsed.target:
+            return Answer("list", self.select(parsed, len(self.objects)))
+        kept = self.candidates(parsed)
+        if not kept:
+            return Answer("not_found")
+        # A small calibrated set means CLIP is sure enough; a large one buys a VLM look.
+        if len(kept) <= self.config.escalate_above or self.vlm is None:
+            return Answer("found", kept[:1])
+        shown = kept[: self.config.max_candidates]
+        chosen = self.verify(text, shown)
+        return Answer("found", [chosen], True) if chosen else Answer("ask", kept, True)
+
+    def candidates(self, parsed: ParsedQuery) -> list[ObjectMatch]:
+        """The conformal set: ranked matches the calibrated cutoff keeps, or the top one.
+
+        Ungated, so the cutoff alone decides and every right object has a finite score.
+        """
+        ranked = self.select(parsed, len(self.objects), gated=False)
+        cutoff = self.config.conformal_cutoff
+        if cutoff is None:
+            return ranked[:1]
+        return [m for m, value in zip(ranked, self._conformity(ranked)) if value <= cutoff]
+
+    def verify(self, text: str, kept: list[ObjectMatch]) -> Optional[ObjectMatch]:
+        """Ask the VLM which crop the command means; None when it picks none."""
+        numbers = [str(i) for i in range(1, len(kept) + 1)]
+        schema = {
+            "type": "object",
+            "properties": {"image": {"type": "string", "enum": numbers + [""]}},
+            "required": ["image"],
+        }
+        prompt = VERIFY_PROMPT.format(n=len(kept), text=text)
+        chosen = self.vlm.complete_json(prompt, schema, [m.obj.crop for m in kept]).get("image")
+        return kept[int(chosen) - 1] if chosen in numbers else None
+
+    def calibrate(self, commands: list[tuple[str, set[str]]]) -> float:
+        """Fit the candidate-set cutoff on commands paired with the ids of their right objects."""
+        nonconformity = []
+        for text, right in commands:
+            ranked = self.select(self.parse(text), len(self.objects), gated=False)
+            values = [v for m, v in zip(ranked, self._conformity(ranked)) if m.obj.id in right]
+            nonconformity.append(min(values, default=math.inf))
+        self.config.conformal_cutoff = conformal.quantile(nonconformity, self.config.alpha)
+        return self.config.conformal_cutoff
 
     # --- internals ---
 
@@ -255,12 +321,14 @@ class SemanticGraph:
         scored = [pair for pair in scored if pair[1] >= self.config.sim_min]
         return sorted(scored, key=lambda pair: -pair[1])
 
-    def _rank_objects(self, text: str, objects: list) -> list[tuple[Any, float]]:
+    def _rank_objects(
+        self, text: str, objects: list, gated: bool = True
+    ) -> list[tuple[Any, float]]:
         """Score objects by appearance and name together, best first.
 
         Image and name similarities live on different scales, so each is
         z-scored over every object in the graph before they are mixed. Only
-        the image similarity decides whether an object is a match at all.
+        the image similarity decides whether an object is a match at all, when gated.
         """
         if self.encoder is None:
             return self._rank(text, objects)
@@ -274,9 +342,16 @@ class SemanticGraph:
         scored = [
             (o, float(score))
             for o, similarity, score in zip(everything, image, fused)
-            if o.id in wanted and similarity >= self.config.sim_min
+            if o.id in wanted and (not gated or similarity >= self.config.sim_min)
         ]
         return sorted(scored, key=lambda pair: -pair[1])
+
+    def _conformity(self, ranked: list[ObjectMatch]) -> np.ndarray:
+        """Per-candidate value; the set keeps candidates at or below the cutoff."""
+        scores = np.array([m.score for m in ranked])
+        if self.config.set_method == "aps" and len(scores):
+            return conformal.mass_before(scores, self.config.aps_temperature)
+        return -scores
 
     def _related(self, obj: ObjectInstance, anchor: Any, relation: str) -> bool:
         """True when the object is on the anchor surface or, unless "on", near the anchor."""

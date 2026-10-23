@@ -1,109 +1,2288 @@
-{
-  "red can": [
-    "coca_cola"
+[
+ {
+  "text": "bring me the red can",
+  "answers": [
+   "coca_cola"
   ],
-  "blue can": [
-    "pepsi"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_00"
+ },
+ {
+  "text": "tráeme la lata roja",
+  "answers": [
+   "coca_cola"
   ],
-  "soda can": [
-    "coca_cola",
-    "pepsi"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_00"
+ },
+ {
+  "text": "bring me the blue can",
+  "answers": [
+   "pepsi"
   ],
-  "white cup": [
-    "cup"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_01"
+ },
+ {
+  "text": "tráeme la lata azul",
+  "answers": [
+   "pepsi"
   ],
-  "black mug": [
-    "mug"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_01"
+ },
+ {
+  "text": "bring me the green can",
+  "answers": [
+   "sprite"
   ],
-  "yellow fruit": [
-    "lemon",
-    "banana"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_02"
+ },
+ {
+  "text": "tráeme la lata verde",
+  "answers": [
+   "sprite"
   ],
-  "banana": [
-    "banana"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_02"
+ },
+ {
+  "text": "bring me the orange can",
+  "answers": [
+   "fanta"
   ],
-  "orange fruit": [
-    "orange"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_03"
+ },
+ {
+  "text": "tráeme la lata naranja",
+  "answers": [
+   "fanta"
   ],
-  "a drink": [
-    "coca_cola",
-    "pepsi",
-    "milk",
-    "orange_juice",
-    "water_bottle"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_03"
+ },
+ {
+  "text": "bring me the energy drink",
+  "answers": [
+   "red_bull"
   ],
-  "something to eat": [
-    "cereal",
-    "apple",
-    "banana",
-    "orange",
-    "lemon",
-    "pringles",
-    "chips"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_04"
+ },
+ {
+  "text": "tráeme la bebida energética",
+  "answers": [
+   "red_bull"
   ],
-  "snack": [
-    "pringles",
-    "chips"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_04"
+ },
+ {
+  "text": "bring me the glass bottle of coke",
+  "answers": [
+   "soda_bottle"
   ],
-  "cleaning product": [
-    "dish_soap",
-    "sponge"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_05"
+ },
+ {
+  "text": "tráeme la botella de vidrio de coca",
+  "answers": [
+   "soda_bottle"
   ],
-  "book": [
-    "book"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_05"
+ },
+ {
+  "text": "bring me the bottle of wine",
+  "answers": [
+   "wine_bottle"
   ],
-  "towel": [
-    "towel"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_06"
+ },
+ {
+  "text": "tráeme la botella de vino",
+  "answers": [
+   "wine_bottle"
   ],
-  "milk": [
-    "milk"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_06"
+ },
+ {
+  "text": "bring me the beer",
+  "answers": [
+   "beer"
   ],
-  "cereal box": [
-    "cereal"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_07"
+ },
+ {
+  "text": "tráeme la cerveza",
+  "answers": [
+   "beer"
   ],
-  "bottle of water": [
-    "water_bottle"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_07"
+ },
+ {
+  "text": "bring me the white cup",
+  "answers": [
+   "cup"
   ],
-  "juice": [
-    "orange_juice"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_08"
+ },
+ {
+  "text": "tráeme la taza blanca",
+  "answers": [
+   "cup"
   ],
-  "fork": [
-    "fork"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_08"
+ },
+ {
+  "text": "bring me the black mug",
+  "answers": [
+   "mug"
   ],
-  "plate": [
-    "plate"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_09"
+ },
+ {
+  "text": "tráeme el tarro negro",
+  "answers": [
+   "mug"
   ],
-  "bowl": [
-    "bowl"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_09"
+ },
+ {
+  "text": "bring me the red mug",
+  "answers": [
+   "red_mug"
   ],
-  "potato chips": [
-    "chips",
-    "pringles"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_10"
+ },
+ {
+  "text": "tráeme la taza roja",
+  "answers": [
+   "red_mug"
   ],
-  "t-shirt": [
-    "tshirt"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_10"
+ },
+ {
+  "text": "bring me the glass of water",
+  "answers": [
+   "glass"
   ],
-  "soap": [
-    "dish_soap"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_11"
+ },
+ {
+  "text": "tráeme el vaso de agua",
+  "answers": [
+   "glass"
   ],
-  "mug": [
-    "mug",
-    "cup"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_11"
+ },
+ {
+  "text": "bring me the wine glass",
+  "answers": [
+   "wine_glass"
   ],
-  "something to wash dishes": [
-    "sponge",
-    "dish_soap"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_12"
+ },
+ {
+  "text": "tráeme la copa de vino",
+  "answers": [
+   "wine_glass"
   ],
-  "red fruit": [
-    "apple"
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_12"
+ },
+ {
+  "text": "bring me the spoon",
+  "answers": [
+   "spoon"
   ],
-  "coke": [
-    "coca_cola"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_13"
+ },
+ {
+  "text": "tráeme la cuchara",
+  "answers": [
+   "spoon"
   ],
-  "pepsi": [
-    "pepsi"
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_13"
+ },
+ {
+  "text": "bring me the knife",
+  "answers": [
+   "knife"
   ],
-  "green shirt": [
-    "tshirt"
-  ]
-}
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_14"
+ },
+ {
+  "text": "tráeme el cuchillo",
+  "answers": [
+   "knife"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_14"
+ },
+ {
+  "text": "bring me the fork",
+  "answers": [
+   "fork"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_15"
+ },
+ {
+  "text": "tráeme el tenedor",
+  "answers": [
+   "fork"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_15"
+ },
+ {
+  "text": "bring me the frying pan",
+  "answers": [
+   "frying_pan"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_16"
+ },
+ {
+  "text": "tráeme el sartén",
+  "answers": [
+   "frying_pan"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_16"
+ },
+ {
+  "text": "bring me the green apple",
+  "answers": [
+   "green_apple"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_17"
+ },
+ {
+  "text": "tráeme la manzana verde",
+  "answers": [
+   "green_apple"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_17"
+ },
+ {
+  "text": "bring me the red apple",
+  "answers": [
+   "apple"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_18"
+ },
+ {
+  "text": "tráeme la manzana roja",
+  "answers": [
+   "apple"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_18"
+ },
+ {
+  "text": "bring me the pear",
+  "answers": [
+   "pear"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_19"
+ },
+ {
+  "text": "tráeme la pera",
+  "answers": [
+   "pear"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_19"
+ },
+ {
+  "text": "bring me the strawberry",
+  "answers": [
+   "strawberry"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_20"
+ },
+ {
+  "text": "tráeme la fresa",
+  "answers": [
+   "strawberry"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_20"
+ },
+ {
+  "text": "bring me the grapes",
+  "answers": [
+   "grapes"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_21"
+ },
+ {
+  "text": "tráeme las uvas",
+  "answers": [
+   "grapes"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_21"
+ },
+ {
+  "text": "bring me the lime",
+  "answers": [
+   "lime"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_22"
+ },
+ {
+  "text": "tráeme el limón verde",
+  "answers": [
+   "lime"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_22"
+ },
+ {
+  "text": "bring me the yellow lemon",
+  "answers": [
+   "lemon"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_23"
+ },
+ {
+  "text": "tráeme el limón amarillo",
+  "answers": [
+   "lemon"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_23"
+ },
+ {
+  "text": "bring me the banana",
+  "answers": [
+   "banana"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_24"
+ },
+ {
+  "text": "tráeme el plátano",
+  "answers": [
+   "banana"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_24"
+ },
+ {
+  "text": "bring me the orange",
+  "answers": [
+   "orange"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_25"
+ },
+ {
+  "text": "tráeme la naranja",
+  "answers": [
+   "orange"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_25"
+ },
+ {
+  "text": "bring me the loaf of bread",
+  "answers": [
+   "bread"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_26"
+ },
+ {
+  "text": "tráeme el pan",
+  "answers": [
+   "bread"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_26"
+ },
+ {
+  "text": "bring me the ketchup bottle",
+  "answers": [
+   "ketchup"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_27"
+ },
+ {
+  "text": "tráeme la cátsup",
+  "answers": [
+   "ketchup"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_27"
+ },
+ {
+  "text": "bring me the box of pasta",
+  "answers": [
+   "pasta"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_28"
+ },
+ {
+  "text": "tráeme la caja de pasta",
+  "answers": [
+   "pasta"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_28"
+ },
+ {
+  "text": "bring me the soup can",
+  "answers": [
+   "soup_can"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_29"
+ },
+ {
+  "text": "tráeme la lata de sopa",
+  "answers": [
+   "soup_can"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_29"
+ },
+ {
+  "text": "bring me the chocolate bar",
+  "answers": [
+   "chocolate_bar"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_30"
+ },
+ {
+  "text": "tráeme la barra de chocolate",
+  "answers": [
+   "chocolate_bar"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_30"
+ },
+ {
+  "text": "bring me the cookie",
+  "answers": [
+   "cookies"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_31"
+ },
+ {
+  "text": "tráeme la galleta",
+  "answers": [
+   "cookies"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_31"
+ },
+ {
+  "text": "bring me the cereal box",
+  "answers": [
+   "cereal"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_32"
+ },
+ {
+  "text": "tráeme la caja de cereal",
+  "answers": [
+   "cereal"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_32"
+ },
+ {
+  "text": "bring me the milk carton",
+  "answers": [
+   "milk"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_33"
+ },
+ {
+  "text": "tráeme la leche",
+  "answers": [
+   "milk"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_33"
+ },
+ {
+  "text": "bring me the orange juice",
+  "answers": [
+   "orange_juice"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_34"
+ },
+ {
+  "text": "tráeme el jugo de naranja",
+  "answers": [
+   "orange_juice"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_34"
+ },
+ {
+  "text": "bring me the water bottle",
+  "answers": [
+   "water_bottle"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_35"
+ },
+ {
+  "text": "tráeme la botella de agua",
+  "answers": [
+   "water_bottle"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_35"
+ },
+ {
+  "text": "bring me the bag of potato chips",
+  "answers": [
+   "chips"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_36"
+ },
+ {
+  "text": "tráeme la bolsa de papas",
+  "answers": [
+   "chips"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_36"
+ },
+ {
+  "text": "bring me the pringles",
+  "answers": [
+   "pringles"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_37"
+ },
+ {
+  "text": "tráeme las pringles",
+  "answers": [
+   "pringles"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_37"
+ },
+ {
+  "text": "bring me the laundry detergent",
+  "answers": [
+   "detergent"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_38"
+ },
+ {
+  "text": "tráeme el detergente",
+  "answers": [
+   "detergent"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_38"
+ },
+ {
+  "text": "bring me the spray bottle",
+  "answers": [
+   "spray_bottle"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_39"
+ },
+ {
+  "text": "tráeme el atomizador",
+  "answers": [
+   "spray_bottle"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_39"
+ },
+ {
+  "text": "bring me the toilet paper",
+  "answers": [
+   "toilet_paper"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_40"
+ },
+ {
+  "text": "tráeme el papel de baño",
+  "answers": [
+   "toilet_paper"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_40"
+ },
+ {
+  "text": "bring me the toothpaste",
+  "answers": [
+   "toothpaste"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_41"
+ },
+ {
+  "text": "tráeme la pasta de dientes",
+  "answers": [
+   "toothpaste"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_41"
+ },
+ {
+  "text": "bring me the dish soap",
+  "answers": [
+   "dish_soap"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_42"
+ },
+ {
+  "text": "tráeme el jabón para trastes",
+  "answers": [
+   "dish_soap"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_42"
+ },
+ {
+  "text": "bring me the sponge",
+  "answers": [
+   "sponge"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_43"
+ },
+ {
+  "text": "tráeme la esponja",
+  "answers": [
+   "sponge"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_43"
+ },
+ {
+  "text": "bring me the red t-shirt",
+  "answers": [
+   "red_tshirt"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_44"
+ },
+ {
+  "text": "tráeme la playera roja",
+  "answers": [
+   "red_tshirt"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_44"
+ },
+ {
+  "text": "bring me the green t-shirt",
+  "answers": [
+   "tshirt"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_45"
+ },
+ {
+  "text": "tráeme la playera verde",
+  "answers": [
+   "tshirt"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_45"
+ },
+ {
+  "text": "bring me the jeans",
+  "answers": [
+   "jeans"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_46"
+ },
+ {
+  "text": "tráeme los jeans",
+  "answers": [
+   "jeans"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_46"
+ },
+ {
+  "text": "bring me the black socks",
+  "answers": [
+   "socks"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_47"
+ },
+ {
+  "text": "tráeme los calcetines negros",
+  "answers": [
+   "socks"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_47"
+ },
+ {
+  "text": "bring me the cap",
+  "answers": [
+   "cap"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_48"
+ },
+ {
+  "text": "tráeme la gorra",
+  "answers": [
+   "cap"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_48"
+ },
+ {
+  "text": "bring me the remote control",
+  "answers": [
+   "remote_control"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_49"
+ },
+ {
+  "text": "tráeme el control remoto",
+  "answers": [
+   "remote_control"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_49"
+ },
+ {
+  "text": "bring me the phone",
+  "answers": [
+   "phone"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_50"
+ },
+ {
+  "text": "tráeme el celular",
+  "answers": [
+   "phone"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_50"
+ },
+ {
+  "text": "bring me the scissors",
+  "answers": [
+   "scissors"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_51"
+ },
+ {
+  "text": "tráeme las tijeras",
+  "answers": [
+   "scissors"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_51"
+ },
+ {
+  "text": "bring me the basketball",
+  "answers": [
+   "ball"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_52"
+ },
+ {
+  "text": "tráeme el balón",
+  "answers": [
+   "ball"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_52"
+ },
+ {
+  "text": "bring me the teddy bear",
+  "answers": [
+   "teddy_bear"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_53"
+ },
+ {
+  "text": "tráeme el oso de peluche",
+  "answers": [
+   "teddy_bear"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_53"
+ },
+ {
+  "text": "bring me the pen",
+  "answers": [
+   "pen"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_54"
+ },
+ {
+  "text": "tráeme la pluma",
+  "answers": [
+   "pen"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_54"
+ },
+ {
+  "text": "bring me the white candle",
+  "answers": [
+   "candle"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_55"
+ },
+ {
+  "text": "tráeme la vela blanca",
+  "answers": [
+   "candle"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_55"
+ },
+ {
+  "text": "bring me the book",
+  "answers": [
+   "book"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_56"
+ },
+ {
+  "text": "tráeme el libro",
+  "answers": [
+   "book"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_56"
+ },
+ {
+  "text": "bring me the towel",
+  "answers": [
+   "towel"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_57"
+ },
+ {
+  "text": "tráeme la toalla",
+  "answers": [
+   "towel"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_57"
+ },
+ {
+  "text": "bring me the plate",
+  "answers": [
+   "plate"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_58"
+ },
+ {
+  "text": "tráeme el plato",
+  "answers": [
+   "plate"
+  ],
+  "type": "attribute",
+  "split": "calibration",
+  "group": "attribute_58"
+ },
+ {
+  "text": "bring me the bowl",
+  "answers": [
+   "bowl"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_59"
+ },
+ {
+  "text": "tráeme el tazón",
+  "answers": [
+   "bowl"
+  ],
+  "type": "attribute",
+  "split": "test",
+  "group": "attribute_59"
+ },
+ {
+  "text": "bring me the drink in the living room",
+  "answers": [
+   "water_bottle"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_00"
+ },
+ {
+  "text": "tráeme la bebida de la sala",
+  "answers": [
+   "water_bottle"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_00"
+ },
+ {
+  "text": "bring me the fruit in the bedroom",
+  "answers": [
+   "banana"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_01"
+ },
+ {
+  "text": "tráeme la fruta del cuarto",
+  "answers": [
+   "banana"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_01"
+ },
+ {
+  "text": "bring me the shirt in the laundry room",
+  "answers": [
+   "tshirt",
+   "red_tshirt"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_02"
+ },
+ {
+  "text": "tráeme la camisa del cuarto de lavado",
+  "answers": [
+   "tshirt",
+   "red_tshirt"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_02"
+ },
+ {
+  "text": "bring me the cup in the living room",
+  "answers": [
+   "cup"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_03"
+ },
+ {
+  "text": "tráeme la taza de la sala",
+  "answers": [
+   "cup"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_03"
+ },
+ {
+  "text": "bring me the mug in the kitchen",
+  "answers": [
+   "mug",
+   "red_mug"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_04"
+ },
+ {
+  "text": "tráeme la taza de la cocina",
+  "answers": [
+   "mug",
+   "red_mug"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_04"
+ },
+ {
+  "text": "bring me the snack in the living room",
+  "answers": [
+   "pringles",
+   "chips",
+   "chocolate_bar"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_05"
+ },
+ {
+  "text": "tráeme el snack de la sala",
+  "answers": [
+   "pringles",
+   "chips",
+   "chocolate_bar"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_05"
+ },
+ {
+  "text": "bring me the bottle in the laundry room",
+  "answers": [
+   "detergent",
+   "spray_bottle",
+   "dish_soap"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_06"
+ },
+ {
+  "text": "tráeme la botella del cuarto de lavado",
+  "answers": [
+   "detergent",
+   "spray_bottle",
+   "dish_soap"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_06"
+ },
+ {
+  "text": "bring me the red thing in the laundry room",
+  "answers": [
+   "red_tshirt"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_07"
+ },
+ {
+  "text": "tráeme la cosa roja del cuarto de lavado",
+  "answers": [
+   "red_tshirt"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_07"
+ },
+ {
+  "text": "bring me the cleaning product in the kitchen",
+  "answers": [
+   "sponge"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_08"
+ },
+ {
+  "text": "tráeme el producto de limpieza de la cocina",
+  "answers": [
+   "sponge"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_08"
+ },
+ {
+  "text": "bring me the book in the bedroom",
+  "answers": [
+   "book"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_09"
+ },
+ {
+  "text": "tráeme el libro de la recámara",
+  "answers": [
+   "book"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_09"
+ },
+ {
+  "text": "bring me the can in the kitchen",
+  "answers": [
+   "coca_cola",
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull",
+   "soup_can"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_10"
+ },
+ {
+  "text": "tráeme la lata de la cocina",
+  "answers": [
+   "coca_cola",
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull",
+   "soup_can"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_10"
+ },
+ {
+  "text": "bring me the fruit in the kitchen",
+  "answers": [
+   "apple",
+   "orange",
+   "green_apple",
+   "pear",
+   "strawberry",
+   "grapes",
+   "lime",
+   "lemon"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_11"
+ },
+ {
+  "text": "tráeme la fruta de la cocina",
+  "answers": [
+   "apple",
+   "orange",
+   "green_apple",
+   "pear",
+   "strawberry",
+   "grapes",
+   "lime",
+   "lemon"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_11"
+ },
+ {
+  "text": "bring me the pen in the bedroom",
+  "answers": [
+   "pen"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_12"
+ },
+ {
+  "text": "tráeme la pluma de la recámara",
+  "answers": [
+   "pen"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_12"
+ },
+ {
+  "text": "bring me the toy in the living room",
+  "answers": [
+   "ball",
+   "teddy_bear"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_13"
+ },
+ {
+  "text": "tráeme el juguete de la sala",
+  "answers": [
+   "ball",
+   "teddy_bear"
+  ],
+  "type": "room",
+  "split": "test",
+  "group": "room_13"
+ },
+ {
+  "text": "bring me the hat in the living room",
+  "answers": [
+   "cap"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_14"
+ },
+ {
+  "text": "tráeme el gorro de la sala",
+  "answers": [
+   "cap"
+  ],
+  "type": "room",
+  "split": "calibration",
+  "group": "room_14"
+ },
+ {
+  "text": "bring me the drink on the counter",
+  "answers": [
+   "orange_juice",
+   "wine_bottle"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_00"
+ },
+ {
+  "text": "tráeme la bebida en la barra",
+  "answers": [
+   "orange_juice",
+   "wine_bottle"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_00"
+ },
+ {
+  "text": "bring me the fruit on the counter",
+  "answers": [
+   "apple",
+   "orange",
+   "green_apple",
+   "pear"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_01"
+ },
+ {
+  "text": "tráeme la fruta de la barra",
+  "answers": [
+   "apple",
+   "orange",
+   "green_apple",
+   "pear"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_01"
+ },
+ {
+  "text": "bring me the fruit on the dinner table",
+  "answers": [
+   "grapes"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_02"
+ },
+ {
+  "text": "tráeme la fruta de la mesa del comedor",
+  "answers": [
+   "grapes"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_02"
+ },
+ {
+  "text": "bring me the mug on the dinner table",
+  "answers": [
+   "mug",
+   "red_mug"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_03"
+ },
+ {
+  "text": "tráeme la taza de la mesa del comedor",
+  "answers": [
+   "mug",
+   "red_mug"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_03"
+ },
+ {
+  "text": "bring me the drink on the coffee table",
+  "answers": [
+   "water_bottle"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_04"
+ },
+ {
+  "text": "tráeme la bebida en la mesa de centro",
+  "answers": [
+   "water_bottle"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_04"
+ },
+ {
+  "text": "bring me the snack on the coffee table",
+  "answers": [
+   "pringles",
+   "chocolate_bar"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_05"
+ },
+ {
+  "text": "tráeme el snack de la mesa de centro",
+  "answers": [
+   "pringles",
+   "chocolate_bar"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_05"
+ },
+ {
+  "text": "bring me the clothes on the washing machine",
+  "answers": [
+   "tshirt",
+   "red_tshirt",
+   "jeans",
+   "socks"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_06"
+ },
+ {
+  "text": "tráeme la ropa sobre la lavadora",
+  "answers": [
+   "tshirt",
+   "red_tshirt",
+   "jeans",
+   "socks"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_06"
+ },
+ {
+  "text": "bring me the bottle on the shelf",
+  "answers": [
+   "detergent",
+   "spray_bottle",
+   "dish_soap"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_07"
+ },
+ {
+  "text": "tráeme la botella en el estante",
+  "answers": [
+   "detergent",
+   "spray_bottle",
+   "dish_soap"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_07"
+ },
+ {
+  "text": "bring me the cloth next to the scissors",
+  "answers": [
+   "towel"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_08"
+ },
+ {
+  "text": "tráeme la tela junto a las tijeras",
+  "answers": [
+   "towel"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_08"
+ },
+ {
+  "text": "bring me the fruit next to the frying pan",
+  "answers": [
+   "lemon",
+   "strawberry",
+   "lime",
+   "orange",
+   "pear"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_09"
+ },
+ {
+  "text": "tráeme la fruta junto al sartén",
+  "answers": [
+   "lemon",
+   "strawberry",
+   "lime",
+   "orange",
+   "pear"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_09"
+ },
+ {
+  "text": "bring me the cutlery on the dinner table",
+  "answers": [
+   "fork",
+   "spoon",
+   "knife"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_10"
+ },
+ {
+  "text": "tráeme los cubiertos de la mesa del comedor",
+  "answers": [
+   "fork",
+   "spoon",
+   "knife"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_10"
+ },
+ {
+  "text": "bring me the fruit on the bed",
+  "answers": [
+   "banana"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_11"
+ },
+ {
+  "text": "tráeme la fruta sobre la cama",
+  "answers": [
+   "banana"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_11"
+ },
+ {
+  "text": "bring me the toy on the sofa",
+  "answers": [
+   "teddy_bear"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_12"
+ },
+ {
+  "text": "tráeme el juguete en el sofá",
+  "answers": [
+   "teddy_bear"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_12"
+ },
+ {
+  "text": "bring me the food in the cabinet",
+  "answers": [
+   "pasta",
+   "soup_can",
+   "cookies"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_13"
+ },
+ {
+  "text": "tráeme la comida en el gabinete",
+  "answers": [
+   "pasta",
+   "soup_can",
+   "cookies"
+  ],
+  "type": "spatial",
+  "split": "test",
+  "group": "spatial_13"
+ },
+ {
+  "text": "bring me the can next to the pepsi",
+  "answers": [
+   "coca_cola",
+   "sprite",
+   "fanta",
+   "red_bull"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_14"
+ },
+ {
+  "text": "tráeme la lata junto a la pepsi",
+  "answers": [
+   "coca_cola",
+   "sprite",
+   "fanta",
+   "red_bull"
+  ],
+  "type": "spatial",
+  "split": "calibration",
+  "group": "spatial_14"
+ },
+ {
+  "text": "bring me something to drink",
+  "answers": [
+   "coca_cola",
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull",
+   "beer",
+   "wine_bottle",
+   "soda_bottle",
+   "milk",
+   "orange_juice",
+   "water_bottle"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_00"
+ },
+ {
+  "text": "tráeme algo de tomar",
+  "answers": [
+   "coca_cola",
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull",
+   "beer",
+   "wine_bottle",
+   "soda_bottle",
+   "milk",
+   "orange_juice",
+   "water_bottle"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_00"
+ },
+ {
+  "text": "bring me something to eat",
+  "answers": [
+   "cereal",
+   "bread",
+   "ketchup",
+   "pasta",
+   "soup_can",
+   "pringles",
+   "chips",
+   "chocolate_bar",
+   "cookies",
+   "apple",
+   "orange",
+   "green_apple",
+   "pear",
+   "strawberry",
+   "grapes",
+   "lime",
+   "lemon",
+   "banana"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_01"
+ },
+ {
+  "text": "tráeme algo de comer",
+  "answers": [
+   "cereal",
+   "bread",
+   "ketchup",
+   "pasta",
+   "soup_can",
+   "pringles",
+   "chips",
+   "chocolate_bar",
+   "cookies",
+   "apple",
+   "orange",
+   "green_apple",
+   "pear",
+   "strawberry",
+   "grapes",
+   "lime",
+   "lemon",
+   "banana"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_01"
+ },
+ {
+  "text": "bring me something to clean the table",
+  "answers": [
+   "sponge",
+   "spray_bottle",
+   "towel"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_02"
+ },
+ {
+  "text": "tráeme algo para limpiar la mesa",
+  "answers": [
+   "sponge",
+   "spray_bottle",
+   "towel"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_02"
+ },
+ {
+  "text": "bring me something to cut paper",
+  "answers": [
+   "scissors"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_03"
+ },
+ {
+  "text": "tráeme algo para cortar papel",
+  "answers": [
+   "scissors"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_03"
+ },
+ {
+  "text": "bring me something to write with",
+  "answers": [
+   "pen"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_04"
+ },
+ {
+  "text": "tráeme algo para escribir",
+  "answers": [
+   "pen"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_04"
+ },
+ {
+  "text": "bring me something to wear",
+  "answers": [
+   "tshirt",
+   "red_tshirt",
+   "jeans",
+   "socks",
+   "cap"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_05"
+ },
+ {
+  "text": "tráeme algo para ponerme",
+  "answers": [
+   "tshirt",
+   "red_tshirt",
+   "jeans",
+   "socks",
+   "cap"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_05"
+ },
+ {
+  "text": "bring me something to play with",
+  "answers": [
+   "ball",
+   "teddy_bear"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_06"
+ },
+ {
+  "text": "tráeme algo para jugar",
+  "answers": [
+   "ball",
+   "teddy_bear"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_06"
+ },
+ {
+  "text": "bring me something to read",
+  "answers": [
+   "book"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_07"
+ },
+ {
+  "text": "tráeme algo para leer",
+  "answers": [
+   "book"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_07"
+ },
+ {
+  "text": "bring me something to brush my teeth",
+  "answers": [
+   "toothpaste"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_08"
+ },
+ {
+  "text": "tráeme algo para lavarme los dientes",
+  "answers": [
+   "toothpaste"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_08"
+ },
+ {
+  "text": "bring me something to change the TV channel",
+  "answers": [
+   "remote_control"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_09"
+ },
+ {
+  "text": "tráeme algo para cambiar el canal de la tele",
+  "answers": [
+   "remote_control"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_09"
+ },
+ {
+  "text": "bring me something to call someone",
+  "answers": [
+   "phone"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_10"
+ },
+ {
+  "text": "tráeme algo para llamar a alguien",
+  "answers": [
+   "phone"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_10"
+ },
+ {
+  "text": "bring me something to light the room",
+  "answers": [
+   "candle"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_11"
+ },
+ {
+  "text": "tráeme algo para iluminar el cuarto",
+  "answers": [
+   "candle"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_11"
+ },
+ {
+  "text": "bring me something to fry eggs",
+  "answers": [
+   "frying_pan"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_12"
+ },
+ {
+  "text": "tráeme algo para freír huevos",
+  "answers": [
+   "frying_pan"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_12"
+ },
+ {
+  "text": "bring me an alcoholic drink",
+  "answers": [
+   "beer",
+   "wine_bottle"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_13"
+ },
+ {
+  "text": "tráeme una bebida con alcohol",
+  "answers": [
+   "beer",
+   "wine_bottle"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_13"
+ },
+ {
+  "text": "bring me a sweet snack",
+  "answers": [
+   "chocolate_bar",
+   "cookies"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_14"
+ },
+ {
+  "text": "tráeme un snack dulce",
+  "answers": [
+   "chocolate_bar",
+   "cookies"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_14"
+ },
+ {
+  "text": "bring me a citrus fruit",
+  "answers": [
+   "orange",
+   "lemon",
+   "lime"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_15"
+ },
+ {
+  "text": "tráeme un cítrico",
+  "answers": [
+   "orange",
+   "lemon",
+   "lime"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_15"
+ },
+ {
+  "text": "bring me something to dry my hands",
+  "answers": [
+   "towel"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_16"
+ },
+ {
+  "text": "tráeme algo para secarme las manos",
+  "answers": [
+   "towel"
+  ],
+  "type": "abstract",
+  "split": "calibration",
+  "group": "abstract_16"
+ },
+ {
+  "text": "bring me something to eat soup with",
+  "answers": [
+   "spoon",
+   "bowl"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_17"
+ },
+ {
+  "text": "tráeme algo para comer sopa",
+  "answers": [
+   "spoon",
+   "bowl"
+  ],
+  "type": "abstract",
+  "split": "test",
+  "group": "abstract_17"
+ },
+ {
+  "text": "bring me a can that is not red",
+  "answers": [
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_00"
+ },
+ {
+  "text": "tráeme una lata que no sea roja",
+  "answers": [
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_00"
+ },
+ {
+  "text": "bring me a mug that is not black",
+  "answers": [
+   "red_mug",
+   "cup"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_01"
+ },
+ {
+  "text": "tráeme una taza que no sea negra",
+  "answers": [
+   "red_mug",
+   "cup"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_01"
+ },
+ {
+  "text": "bring me an apple that is not red",
+  "answers": [
+   "green_apple"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_02"
+ },
+ {
+  "text": "tráeme una manzana que no sea roja",
+  "answers": [
+   "green_apple"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_02"
+ },
+ {
+  "text": "bring me a t-shirt that is not green",
+  "answers": [
+   "red_tshirt"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_03"
+ },
+ {
+  "text": "tráeme una playera que no sea verde",
+  "answers": [
+   "red_tshirt"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_03"
+ },
+ {
+  "text": "bring me a drink without alcohol",
+  "answers": [
+   "coca_cola",
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull",
+   "soda_bottle",
+   "milk",
+   "orange_juice",
+   "water_bottle"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_04"
+ },
+ {
+  "text": "tráeme una bebida sin alcohol",
+  "answers": [
+   "coca_cola",
+   "pepsi",
+   "sprite",
+   "fanta",
+   "red_bull",
+   "soda_bottle",
+   "milk",
+   "orange_juice",
+   "water_bottle"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_04"
+ },
+ {
+  "text": "bring me a fruit that is not yellow",
+  "answers": [
+   "apple",
+   "orange",
+   "green_apple",
+   "pear",
+   "strawberry",
+   "grapes",
+   "lime"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_05"
+ },
+ {
+  "text": "tráeme una fruta que no sea amarilla",
+  "answers": [
+   "apple",
+   "orange",
+   "green_apple",
+   "pear",
+   "strawberry",
+   "grapes",
+   "lime"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_05"
+ },
+ {
+  "text": "bring me a bottle that is not plastic",
+  "answers": [
+   "wine_bottle",
+   "soda_bottle"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_06"
+ },
+ {
+  "text": "tráeme una botella que no sea de plástico",
+  "answers": [
+   "wine_bottle",
+   "soda_bottle"
+  ],
+  "type": "negation",
+  "split": "calibration",
+  "group": "negation_06"
+ },
+ {
+  "text": "bring me a glass without wine",
+  "answers": [
+   "glass"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_07"
+ },
+ {
+  "text": "tráeme un vaso sin vino",
+  "answers": [
+   "glass"
+  ],
+  "type": "negation",
+  "split": "test",
+  "group": "negation_07"
+ }
+]

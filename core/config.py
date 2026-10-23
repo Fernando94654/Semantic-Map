@@ -4,7 +4,7 @@ ROS parameters all feed the same dataclass."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
-from typing import Any
+from typing import Any, Optional
 
 from core.types import SurfaceType
 
@@ -69,6 +69,18 @@ class SemanticMapConfig:
     sim_min: float = 0.24
     # Share of the object's name in its score: 0 is appearance only, 1 is name only.
     name_weight: float = 0.5
+
+    # Conformal candidate set: holds the right object with probability >= 1 - alpha.
+    alpha: float = 0.10
+    # "threshold" keeps scores above a cutoff, "aps" keeps candidates up to a softmax mass.
+    set_method: str = "aps"
+    aps_temperature: float = 1.0
+    # Fitted by SemanticGraph.calibrate; None keeps only the top match.
+    conformal_cutoff: Optional[float] = None
+    # Sets up to this size are answered by CLIP; larger ones go to the VLM.
+    escalate_above: int = 1
+    # Crops the VLM sees at most, as one 3x3 grid.
+    max_candidates: int = 9
 
     # How far an object may sit from a surface and still belong to it.
     max_sublocation_distance_m: float = 1.5

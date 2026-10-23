@@ -114,6 +114,7 @@ class ObjectInstance:
     category: Optional[str] = None
     confidence: float = 0.0
     embedding: Optional[np.ndarray] = None
+    crop: str = ""
     first_seen: float = 0.0
     last_seen: float = 0.0
     observation_count: int = 1
@@ -150,6 +151,15 @@ class ObjectMatch:
 
     obj: ObjectInstance
     score: float
+
+
+@dataclass
+class Answer:
+    """A resolved command: "found", "ask" between candidates, "not_found", or a "list"."""
+
+    status: str
+    matches: list[ObjectMatch] = field(default_factory=list)
+    vlm_used: bool = False
 
 
 @dataclass

@@ -64,8 +64,9 @@ disk. Without a GPU, drop `--runtime nvidia`; it works, slowly.
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-docker run -d --runtime nvidia --network host -v ollama:/root/.ollama --name semantic-map-ollama ollama/ollama
+docker run -d --runtime nvidia --network host -e OLLAMA_MAX_LOADED_MODELS=1 -v ollama:/root/.ollama --name semantic-map-ollama ollama/ollama
 docker exec semantic-map-ollama ollama pull qwen3:8b
+docker exec semantic-map-ollama ollama pull qwen2.5vl:7b
 
 .venv/bin/python scripts/embed_images.py   # data/images -> data/embeddings.npz (not committed)
 .venv/bin/python -m pytest
@@ -73,6 +74,19 @@ docker exec semantic-map-ollama ollama pull qwen3:8b
 ```
 
 Tests that need CLIP or Ollama skip themselves when either is missing.
+
+## Evaluate
+
+`SemanticGraph.answer` is the cascade: CLIP ranks, a conformal cutoff calibrated
+on `data/queries.json` keeps a candidate set, and the VLM only breaks ties among
+up to `max_candidates` crops. `eval/` compares it with the full graph in the
+prompt, CLIP alone and the VLM always.
+
+```bash
+.venv/bin/python -m eval.run         # results/<host>.json, about 30 min
+.venv/bin/python -m eval.report      # tables in results/<host>.md, plots in results/figures/
+.venv/bin/python -m eval.grounding   # offline attention check; stop the Ollama models first
+```
 
 ## Why
 
