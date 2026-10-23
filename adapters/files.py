@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 
 from core.config import SemanticMapConfig
-from core.serialize import snapshot_from_dict
+from core.serialize import snapshot_from_dict, snapshot_to_dict
 from core.types import Snapshot
 
 EMBEDDINGS_NAME = "embeddings.npz"
@@ -30,3 +30,20 @@ def load_snapshot(path: str | Path, config: SemanticMapConfig) -> Snapshot:
                 if object_id in snapshot.objects:
                     snapshot.objects[object_id].embedding = vectors[object_id]
     return snapshot
+
+
+def save_snapshot(snapshot: Snapshot, path: str | Path) -> None:
+    """Write a snapshot the way load_snapshot reads it: JSON, embeddings beside it.
+
+    The embeddings file is always rewritten, even empty, so a stale one from an
+    earlier save can never be loaded against these objects.
+    """
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = snapshot_to_dict(snapshot)
+    for raw in data["objects"]:
+        raw["embedding"] = None
+    with open(path, "w") as file:
+        json.dump(data, file, indent=2, ensure_ascii=False)
+    vectors = {i: o.embedding for i, o in snapshot.objects.items() if o.embedding is not None}
+    np.savez(path.parent / EMBEDDINGS_NAME, **vectors)

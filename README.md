@@ -104,7 +104,8 @@ boundary. Dicts work until the first argument over `sublocation` vs. `subarea`.
 
 **The snapshot is the central contract** — what the robot dumps, what offline
 work loads, what a test replays. One format means the two paths cannot drift, and
-runs stay reproducible.
+runs stay reproducible. `save_snapshot(graph.snapshot(), path)` writes it back
+in the format `load_snapshot` reads.
 
 **Parse and select are separate** — `parse` is the slow LLM call, `select` is
 fast and pure. Splitting them keeps a model off the critical path.

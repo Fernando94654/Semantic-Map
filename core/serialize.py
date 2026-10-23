@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import asdict, astuple, replace
 from typing import Any, Optional
 
 import numpy as np
@@ -10,6 +11,7 @@ from core.config import SemanticMapConfig
 from core.types import ObjectInstance, Point, Pose, Room, Snapshot, Surface, SurfaceType
 
 NOT_SURFACES = ("polygon", "safe_place")
+SNAPSHOT_VERSION = 1
 
 
 def rooms_from_layout(
@@ -65,6 +67,62 @@ def snapshot_from_dict(data: dict[str, Any], config: SemanticMapConfig) -> Snaps
         map_name=data.get("map_name", ""),
         embedding_dim=data.get("embedding_dim", 0),
     )
+
+
+def snapshot_to_dict(snapshot: Snapshot) -> dict[str, Any]:
+    """The inverse of snapshot_from_dict, with embeddings inline as lists.
+
+    Every surface gets a furniture_meta entry, so a reload never has to guess
+    a type from a name.
+    """
+    layout, furniture_meta, scanned = {}, {}, {}
+    for room in snapshot.rooms.values():
+        entry: dict[str, Any] = {}
+        if room.polygon:
+            entry["polygon"] = [[float(x), float(y)] for x, y in room.polygon]
+        if room.safe_place is not None:
+            entry["safe_place"] = _floats(room.safe_place)
+        for surface in room.surfaces.values():
+            key = f"{room.name}/{surface.name}"
+            entry[surface.name] = _floats(surface.pose)
+            info = {"type": surface.type.value, "height_m": float(surface.height_m)}
+            if surface.front_yaw_rad is not None:
+                info["front_yaw_rad"] = float(surface.front_yaw_rad)
+            if surface.arm_pose is not None:
+                info["arm_pose"] = surface.arm_pose
+            furniture_meta[key] = info
+            if surface.last_scanned is not None:
+                scanned[key] = float(surface.last_scanned)
+        layout[room.name] = entry
+    return {
+        "version": SNAPSHOT_VERSION,
+        "map_name": snapshot.map_name,
+        "t_capture": float(snapshot.t_capture),
+        "embedding_dim": snapshot.embedding_dim,
+        "layout": layout,
+        "furniture_meta": furniture_meta,
+        "scanned": scanned,
+        "objects": [_object_to_dict(o) for o in snapshot.objects.values()],
+    }
+
+
+def _object_to_dict(obj: ObjectInstance) -> dict[str, Any]:
+    """Crops are left out: they are local paths, found again beside the file on load."""
+    fields = asdict(replace(obj, position=None, embedding=None))
+    del fields["crop"]
+    return {
+        **fields,
+        "position": _floats(obj.position),
+        "confidence": float(obj.confidence),
+        "first_seen": float(obj.first_seen),
+        "last_seen": float(obj.last_seen),
+        "embedding": None if obj.embedding is None else obj.embedding.tolist(),
+    }
+
+
+def _floats(value: Any) -> list[float]:
+    """A Point or Pose as the plain float list the JSON uses."""
+    return [float(v) for v in astuple(value)]
 
 
 def _type_from_name(name: str, config: SemanticMapConfig) -> str:

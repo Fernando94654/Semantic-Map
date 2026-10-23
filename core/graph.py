@@ -102,6 +102,21 @@ class SemanticGraph:
         graph._embed_missing()
         return graph
 
+    def snapshot(self) -> Snapshot:
+        """The graph as it stands now, captured at the clock's time. Shares state, no copy."""
+        dims = {len(o.embedding) for o in self.objects.values() if o.embedding is not None}
+        if self.encoder is not None:
+            dims.add(self.encoder.dim)
+        if len(dims) > 1:
+            raise ValueError(f"objects carry embeddings of mixed sizes {sorted(dims)}")
+        return Snapshot(
+            rooms=self.rooms,
+            objects=self.objects,
+            t_capture=self._now(),
+            map_name=self.map_name,
+            embedding_dim=dims.pop() if dims else 0,
+        )
+
     def load_layout(self, areas: dict[str, Any], meta: Optional[dict[str, Any]] = None) -> None:
         """Load the fixed layer from a raw areas.json dict."""
         self.rooms = rooms_from_layout(areas, self.config, meta)
